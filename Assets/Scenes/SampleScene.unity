@@ -216,6 +216,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 161, y: -29, z: 15}
+--- !u!1 &930443716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930443717}
+  m_Layer: 0
+  m_Name: ActiveCars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &930443717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930443716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1155531016}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +356,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3295691272160767854, guid: 9433b9e607d5a0b41ba025c5b68fe175, type: 3}
   m_PrefabInstance: {fileID: 3295691271649408165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1155531014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155531016}
+  - component: {fileID: 1155531015}
+  m_Layer: 0
+  m_Name: OtherCarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1155531015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155531014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93b8ad95fcea184aa3e5497c438de1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCars: {fileID: 930443716}
+  unActiveCars: {fileID: 1986700159}
+  carArray:
+  - {fileID: 3962152896812313682, guid: 83ac27b1f938bcc4b9cd571547e82785, type: 3}
+  - {fileID: 2165418705503879723, guid: e57be371274b6a047ad14fbb84753cf4, type: 3}
+  - {fileID: 2494779192063205044, guid: 025c91a4c8fbcbf49a64be7dcf0f90fd, type: 3}
+  - {fileID: 4648202726740579718, guid: 1fe818fb3322329419c24a0cf6772802, type: 3}
+  - {fileID: 6438660728011942206, guid: 2876c0f0175f1c4409935098b7f8d9d7, type: 3}
+  - {fileID: 6182858602302912531, guid: a5aa81b4800cc164f8a29b942f71b55b, type: 3}
+  initialCarNumbers: 50
+  carFreq: 0.26
+  reverseCarFreq: 0.08
+  pathManager: {fileID: 1992560162}
+--- !u!4 &1155531016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155531014}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.283969, y: 1.0294304, z: -1.1862822}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 930443717}
+  - {fileID: 1986700160}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1986700159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986700160}
+  m_Layer: 0
+  m_Name: UnActiveCars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1986700160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986700159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1155531016}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992560161
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +481,9 @@ MonoBehaviour:
   firstPath: {fileID: 1048304586}
   pathCount: 25
   pathList: []
+  listPathIndex: 0
+  destroyDistance: 0
+  otherCarManager: {fileID: 1155531015}
 --- !u!4 &1992560163
 Transform:
   m_ObjectHideFlags: 0

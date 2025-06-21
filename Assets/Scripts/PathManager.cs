@@ -8,10 +8,15 @@ public class PathManager : MonoBehaviour
     [SerializeField] private GameObject firstPath;
     [SerializeField] private int pathCount;
     private float zPathSize;
-    [SerializeField] private List<GameObject> pathList = new List<GameObject>();
+    public List<GameObject> pathList = new List<GameObject>();
     private const float positionBais = 0f;
 
-    private int listPathIndex = 0;
+    public int listPathIndex = 0;
+
+    public float destroyDistance;
+
+    //ref the other car manager
+    [SerializeField] OtherCarManager otherCarManager;
 
     private void Start()
     {
@@ -38,7 +43,7 @@ public class PathManager : MonoBehaviour
     {
         while(true)
         {
-            float destroyDistance = Camera.main.transform.position.z -15f;
+            destroyDistance = Camera.main.transform.position.z -15f;
 
             if (pathList[listPathIndex].transform.position.z < destroyDistance)
             {
@@ -46,6 +51,9 @@ public class PathManager : MonoBehaviour
                 nextPathPos.z += positionBais;
 
                 pathList[listPathIndex].transform.position = nextPathPos;
+
+                otherCarManager.CheckAndDisableCarPath();
+
                 listPathIndex++;
 
                 if(listPathIndex == pathList.Count)
@@ -53,6 +61,7 @@ public class PathManager : MonoBehaviour
                     listPathIndex = 0;
                 }
             }
+            otherCarManager.FindCarAndReset();
             yield return null;
         }
     }
