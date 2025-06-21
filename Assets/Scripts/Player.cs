@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     float lrSign;
 
     [SerializeField] private float smoothMove;
+    [SerializeField] private float moveSpeed = 200f;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class Player : MonoBehaviour
     public void Update()
     {
         SwipeLeftRight();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = Vector3.forward * moveSpeed;
     }
 
     private void SwipeLeftRight()

@@ -478,6 +478,7 @@ MonoBehaviour:
   rotationDegY: 15
   rotationDegZ: 5
   smoothMove: 0
+  moveSpeed: 30
 --- !u!54 &2009056381
 Rigidbody:
   m_ObjectHideFlags: 0

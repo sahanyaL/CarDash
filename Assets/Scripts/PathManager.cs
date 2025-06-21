@@ -11,11 +11,14 @@ public class PathManager : MonoBehaviour
     [SerializeField] private List<GameObject> pathList = new List<GameObject>();
     private const float positionBais = 0f;
 
+    private int listPathIndex = 0;
+
     private void Start()
     {
         zPathSize = firstPath.transform.GetChild (0).GetComponent<Renderer> ().bounds.size.z;
         pathList.Add(firstPath);
         SpawnPath();
+        StartCoroutine(RepositionPath());
     }
 
     private void SpawnPath()
@@ -28,5 +31,44 @@ public class PathManager : MonoBehaviour
             path.transform.parent = transform;
             pathList.Add(path);
         }
+    }
+
+    // make the path endless
+    IEnumerator RepositionPath()
+    {
+        while(true)
+        {
+            float destroyDistance = Camera.main.transform.position.z -15f;
+
+            if (pathList[listPathIndex].transform.position.z < destroyDistance)
+            {
+                Vector3 nextPathPos = FarestPath().transform.position + Vector3.forward * zPathSize;
+                nextPathPos.z += positionBais;
+
+                pathList[listPathIndex].transform.position = nextPathPos;
+                listPathIndex++;
+
+                if(listPathIndex == pathList.Count)
+                {
+                    listPathIndex = 0;
+                }
+            }
+            yield return null;
+        }
+    }
+
+    //find the farest path
+    GameObject FarestPath()
+    {
+        GameObject thisPath = pathList[0];
+
+        for (int i = 0; i < pathList.Count; i++)
+        {
+            if(pathList[i].transform.position.z > thisPath.transform.position.z)
+            {
+                thisPath = pathList[i];
+            }
+        }
+        return thisPath;
     }
 }
