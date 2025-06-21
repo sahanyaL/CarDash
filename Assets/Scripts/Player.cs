@@ -16,12 +16,20 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
 
+    private bool rotateLeft = false;
+    private bool rotateRight = false;
+    [SerializeField] private float smoothRotationSpeed = 0.2f;
+    [SerializeField] private float rotationDegY = 15f;
+    [SerializeField] private float rotationDegZ = 5f;
+    float lrSign;
+
     [SerializeField] private float smoothMove;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
+        lrSign = -Mathf.Sign(transform.position.x);
     }
 
     public void Update()
@@ -84,11 +92,46 @@ public class Player : MonoBehaviour
 
     private void MoveRight(float lane)
     {
-        transform.DOMoveX(lane,smoothMove);
+        transform.DOMoveX(lane,smoothMove).OnStart(RotateRight).OnComplete(RotateRight);
     }
 
     private void MoveLeft(float lane)
     {
-         transform.DOMoveX(lane,smoothMove);
+        transform.DOMoveX(lane,smoothMove).OnStart(RotateLeft).OnComplete(RotateLeft);
     }
+
+    private void RotateLeft()
+    {
+        if(rotateLeft)
+        {
+            transform.DORotate(new Vector3 (0,0,0), smoothRotationSpeed);
+            rotateLeft = false;
+        }
+        else
+        {
+            if(rotateLeft)
+            {
+                transform.DORotate(new Vector3 (0, rotationDegY * lrSign, rotationDegZ * lrSign), smoothRotationSpeed);
+                rotateLeft = true;
+            }
+        }
+    }
+
+    private void RotateRight()
+    {
+        if(rotateRight)
+        {
+            transform.DORotate(new Vector3 (0,0,0), smoothRotationSpeed);
+            rotateRight = false;
+        }
+        else
+        {
+            if(rotateLeft)
+            {
+                transform.DORotate(new Vector3 (0, -rotationDegY * lrSign, -rotationDegZ * lrSign), smoothRotationSpeed);
+                rotateRight = true;
+            }
+        }
+    }
+
 }
